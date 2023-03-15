@@ -44,10 +44,9 @@ let init = async () => {
   await channel.on("MemberJoined", handleUserJoined);
   await channel.on("MemberLeft", handleUserLeft);
 
-  client.on("MessageFromPeer", handleMessageFromPeer);
-
   localStream = await navigator.mediaDevices.getUserMedia(constraints);
   document.querySelector("#user-1").srcObject = localStream;
+  client.on("MessageFromPeer", handleMessageFromPeer);
 };
 
 let handleUserLeft = (MemberId) => {
