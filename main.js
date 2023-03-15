@@ -66,7 +66,9 @@ let handleMessageFromPeer = async (message, MemberId) => {
   }
   if (message.type === "candidate") {
     if (peerConnection) {
-      peerConnection?.addIceCandidate(message.candidate);
+      peerConnection?.addIceCandidate(message.candidate).catch((e) => {
+        console.log("Failure during addIceCandidate(): " + e.name);
+      });
     }
   }
 };
