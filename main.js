@@ -36,7 +36,7 @@ let constraints = {
 };
 
 let init = async () => {
-  client = AgoraRTM.createInstance(APP_ID);
+  client = await AgoraRTM.createInstance(APP_ID);
   client.login({ uid, token });
 
   channel = client.createChannel(roomId);
