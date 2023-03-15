@@ -41,8 +41,8 @@ let init = async () => {
   channel = client.createChannel(roomId);
   await channel.join();
 
-  channel.on("MemberJoined", handleUserJoined);
-  channel.on("MemberLeft", handleUserLeft);
+  await channel.on("MemberJoined", handleUserJoined);
+  await channel.on("MemberLeft", handleUserLeft);
 
   client.on("MessageFromPeer", handleMessageFromPeer);
 
