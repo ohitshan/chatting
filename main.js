@@ -37,15 +37,15 @@ let constraints = {
 
 let init = async () => {
   client = await AgoraRTM.createInstance(APP_ID);
-  client.login({ uid, token });
+  await client.login({ uid, token });
 
   channel = client.createChannel(roomId);
-  channel.join();
+  await channel.join();
 
   channel.on("MemberJoined", handleUserJoined);
   channel.on("MemberLeft", handleUserLeft);
 
-  localStream = navigator.mediaDevices.getUserMedia(constraints);
+  localStream = await navigator.mediaDevices.getUserMedia(constraints);
   document.querySelector("#user-1").srcObject = localStream;
 
   client.on("MessageFromPeer", handleMessageFromPeer);
