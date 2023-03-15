@@ -56,6 +56,7 @@ let handleUserLeft = (MemberId) => {
 };
 
 let handleMessageFromPeer = async (message, MemberId) => {
+  console.log("handleMessageFromPeer");
   message = JSON.parse(message.text);
   if (message.type === "offer") {
     createAnswer(MemberId, message.offer);
@@ -77,6 +78,7 @@ let handleUserJoined = async (MemberId) => {
 
 let createPeerConnection = async (MemberId) => {
   peerConnection = new RTCPeerConnection(servers);
+  console.log("peerc", peerConnection);
 
   remoteStream = new MediaStream();
   document.querySelector("#user-2").srcObject = remoteStream;
