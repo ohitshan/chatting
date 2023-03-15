@@ -26,6 +26,7 @@ const servers = {
   ],
 };
 
+//화질개선
 let constraints = {
   video: {
     width: { min: 640, ideal: 1920, max: 1920 },
@@ -41,12 +42,13 @@ let init = async () => {
   channel = client.createChannel(roomId);
   await channel.join();
 
-  await channel.on("MemberJoined", handleUserJoined);
-  await channel.on("MemberLeft", handleUserLeft);
+  channel.on("MemberJoined", handleUserJoined);
+  channel.on("MemberLeft", handleUserLeft);
 
   localStream = await navigator.mediaDevices.getUserMedia(constraints);
   document.querySelector("#user-1").srcObject = localStream;
-  await client.on("MessageFromPeer", handleMessageFromPeer);
+
+  client.on("MessageFromPeer", handleMessageFromPeer);
 };
 
 let handleUserLeft = (MemberId) => {
